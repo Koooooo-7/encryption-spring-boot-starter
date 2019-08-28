@@ -78,7 +78,9 @@ encryption:
 
   
 
-- use the annotation  `@Encrypt` / `@Decrypt`
+- Use it
+
+  use the annotation  `@Encrypt` / `@Decrypt`
 
 ```java
     @Decrypt
@@ -94,6 +96,13 @@ encryption:
     }
 ```
 
+​         you can straightly use the `CryptoExecutor`  ,instead.  
+
+```	java
+@Autowired
+private CryptoExecutor cryptoExecutor;
+```
+
 
 
 ## Contribute
@@ -102,4 +111,4 @@ If  you wanna do it together, welcome to PR.:rocket:
 
 ## License
 
- MIT  .
+ MIT .
