@@ -1,6 +1,6 @@
 package com.koy.springboot.encryption.core;
 
-import com.koy.springboot.encryption.exception.ExecutorDecryptedFailedException;
+import com.koy.springboot.encryption.exception.ExecutorEncryptedFailedException;
 import com.koy.springboot.encryption.executor.CryptoExecutor;
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.Around;
@@ -36,7 +36,7 @@ public class EncryptService {
         // execute the encrypt
         String encrypt = cryptoExecutor.encrypt(s);
         if (StringUtils.isEmpty(encrypt)){
-            throw new ExecutorDecryptedFailedException("executor encrypt failed, result is empty");
+            throw new ExecutorEncryptedFailedException("executor encrypt failed, result is empty");
         }
         try {
             // change the code to encrypt result
