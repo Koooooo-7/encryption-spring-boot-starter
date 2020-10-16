@@ -20,11 +20,11 @@ public class CryptoConfiguration {
     CryptoProperties cryptoProperties;
 
     @Bean
-    @ConditionalOnProperty(prefix="encryption",name = "type",havingValue = "aes128")
-    public CryptoExecutor aesFactory(){
+    @ConditionalOnProperty(prefix = "encryption", name = "type", havingValue = "aes128")
+    public CryptoExecutor aesFactory() {
         String secretKey = cryptoProperties.getSecretKey();
         Assert.hasText(secretKey, "secretKey must not be empty");
-        Assert.isTrue(secretKey.length() == 16,"secretKey has bad length");
+        Assert.isTrue(secretKey.length() == 16, "secretKey has bad length");
         return new AesExecutor(cryptoProperties);
     }
 }

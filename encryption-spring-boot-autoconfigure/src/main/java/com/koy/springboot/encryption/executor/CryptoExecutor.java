@@ -6,6 +6,7 @@ package com.koy.springboot.encryption.executor;
 public interface CryptoExecutor {
     /**
      * the string need to encrypt
+     *
      * @param s
      * @return
      */
@@ -13,6 +14,7 @@ public interface CryptoExecutor {
 
     /**
      * the string need to decrypt
+     *
      * @param s
      */
     String decrypt(String s);

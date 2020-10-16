@@ -22,7 +22,8 @@ public class DecryptService {
     private CryptoExecutor cryptoExecutor;
 
     @Pointcut("@annotation(com.koy.springboot.encryption.annotation.Decrypt)")
-    public void decrypt() {}
+    public void decrypt() {
+    }
 
     @Around("decrypt()")
     public void decryptCode(ProceedingJoinPoint joinPoint) {
@@ -30,12 +31,12 @@ public class DecryptService {
         Object[] args = joinPoint.getArgs();
 
         // get the first (should be only one param indeed ) must be string
-        Assert.isInstanceOf(String.class,args[0],"need decrypt param should be String");
+        Assert.isInstanceOf(String.class, args[0], "need decrypt param should be String");
 
-        String s = (String)args[0];
+        String s = (String) args[0];
         // execute the decrypt
         String decrypt = cryptoExecutor.decrypt(s);
-        if (StringUtils.isEmpty(decrypt)){
+        if (StringUtils.isEmpty(decrypt)) {
             throw new ExecutorDecryptedFailedException("executor decrypted failed, result is empty");
         }
         try {

@@ -5,7 +5,7 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
 /**
  * @author Koy  https://github.com/Koooooo-7
  */
-@ConfigurationProperties(prefix="encryption")
+@ConfigurationProperties(prefix = "encryption")
 public class CryptoProperties {
 
     // which encrypt or decrypt type , eg: aes
@@ -19,7 +19,6 @@ public class CryptoProperties {
 
     // the  encryptedKey need decrypt by the secretKey
     private String encryptedKey;
-
 
 
     public String getType() {

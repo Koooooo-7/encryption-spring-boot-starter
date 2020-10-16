@@ -3,6 +3,7 @@ package com.koy.springboot.encryption.executor;
 import com.koy.springboot.encryption.autoconfigure.CryptoProperties;
 import org.apache.commons.codec.DecoderException;
 import org.apache.commons.codec.binary.Hex;
+
 import javax.crypto.BadPaddingException;
 import javax.crypto.Cipher;
 import javax.crypto.IllegalBlockSizeException;
@@ -14,7 +15,7 @@ import java.security.NoSuchAlgorithmException;
 
 /**
  * @author Koy  https://github.com/Koooooo-7
- *
+ * <p>
  * the AesExecutor can use the AES algorithm to execute encryption or decryption
  */
 public class AesExecutor implements CryptoExecutor {
@@ -36,12 +37,12 @@ public class AesExecutor implements CryptoExecutor {
 
     @Override
     public String encrypt(String s) {
-        Key key =new SecretKeySpec(this.secretKey, "AES");
+        Key key = new SecretKeySpec(this.secretKey, "AES");
         Cipher cipher = null;
         try {
             // select encrypt type
             cipher = Cipher.getInstance("AES/ECB/PKCS5Padding");
-            cipher.init(Cipher.ENCRYPT_MODE,key);
+            cipher.init(Cipher.ENCRYPT_MODE, key);
             byte[] result = cipher.doFinal(s.getBytes());
             return Hex.encodeHexString(result);
         } catch (InvalidKeyException e) {
@@ -64,7 +65,7 @@ public class AesExecutor implements CryptoExecutor {
         Key key = new SecretKeySpec(this.secretKey, "AES");
         try {
             cipher = Cipher.getInstance("AES/ECB/PKCS5Padding");
-            cipher.init(Cipher.DECRYPT_MODE,key);
+            cipher.init(Cipher.DECRYPT_MODE, key);
             byte[] s2bytes = Hex.decodeHex(s);
             byte[] result = cipher.doFinal(s2bytes);
             return new String(result);

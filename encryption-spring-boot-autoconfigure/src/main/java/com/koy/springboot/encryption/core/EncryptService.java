@@ -22,7 +22,8 @@ public class EncryptService {
     private CryptoExecutor cryptoExecutor;
 
     @Pointcut("@annotation(com.koy.springboot.encryption.annotation.Encrypt)")
-    public void encrypt() {}
+    public void encrypt() {
+    }
 
     @Around("encrypt()")
     public void encryptCode(ProceedingJoinPoint joinPoint) {
@@ -30,12 +31,12 @@ public class EncryptService {
         Object[] args = joinPoint.getArgs();
 
         // get the first (should be only one param indeed ) must be string
-        Assert.isInstanceOf(String.class,args[0],"need encrypt param should be String");
+        Assert.isInstanceOf(String.class, args[0], "need encrypt param should be String");
 
-        String s = (String)args[0];
+        String s = (String) args[0];
         // execute the encrypt
         String encrypt = cryptoExecutor.encrypt(s);
-        if (StringUtils.isEmpty(encrypt)){
+        if (StringUtils.isEmpty(encrypt)) {
             throw new ExecutorEncryptedFailedException("executor encrypt failed, result is empty");
         }
         try {
